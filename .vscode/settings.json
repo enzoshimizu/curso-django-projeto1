@@ -1,0 +1,93 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.minimap.enabled": false,
+    "git.autofetch": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8", // ms-python.python
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "terminal.integrated.profiles.windows": {
+
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
+    "workbench.editorAssociations": {
+        "*.html": "default",
+        "*.csv": "gc-excelviewer-csv-editor"
+    },
+    "[html]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": true,
+          "strings": true
+        }
+    },
+    "html.format.contentUnformatted": "",
+    "files.associations": {
+        "*.js": "javascript",
+        "*.jsx": "javascriptreact",
+        "*.xml": "html",
+        "*.svg": "html",
+        "*.html": "html",
+        "django-html": "html", // batisteo.vscode-django
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/base_templates/**/*.html": "django-html",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "[django-html]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": true,
+          "strings": true
+        }
+    },
+    "python.autoComplete.extraPaths": [
+        
+    ],
+    "workbench.startupEditor": "none",
+    "python.analysis.extraPaths": [],
+    "workbench.colorTheme": "One Dark Pro",
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "jupyter.askForKernelRestart": false,
+    "python.languageServer": "Pylance",
+    "python.testing.pytestEnabled": true,
+    "pylint.args": [
+        "--load-plugins=pylint_django",
+        "--errors-only"
+    ],
+    "autopep8.args": [
+        "--indent-size=4"
+    ],
+    "emmet.includeLanguages": {
+        "django-html": "html", // batisteo.vscode-django
+        "javascript": "javascriptreact",
+        "typescript": "typescriptreact"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.detectIndentation": false
+}
