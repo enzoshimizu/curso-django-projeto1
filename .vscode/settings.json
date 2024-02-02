@@ -76,18 +76,21 @@
     "jupyter.askForKernelRestart": false,
     "python.languageServer": "Pylance",
     "python.testing.pytestEnabled": true,
-    "pylint.args": [
-        "--load-plugins=pylint_django",
-        "--errors-only"
-    ],
-    "autopep8.args": [
-        "--indent-size=4"
-    ],
+    "python.testing.pytestArgs": [], // -x to bail
+    "python.defaultInterpreterPath": "venv/bin/python",
     "emmet.includeLanguages": {
         "django-html": "html", // batisteo.vscode-django
         "javascript": "javascriptreact",
         "typescript": "typescriptreact"
     },
     "workbench.iconTheme": "material-icon-theme",
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "python.testing.unittestEnabled": false,
+    "pylint.args": [
+        "--load-plugins=pylint_django",
+        "--errors-only"
+    ],
+    "autopep8.args": [
+        "--indent-size=4"
+    ]
 }
