@@ -1,11 +1,10 @@
-from django.test import TestCase
 from django.urls import reverse, resolve
 
 from recipes import views
-from recipes.models import Category, Recipe, User
+from .test_recipe_base import RecipeTestBase
 
 
-class RecipeViewsTest(TestCase):
+class RecipeViewsTest(RecipeTestBase):
     def test_recipe_home_view_function_is_correct(self):
         url = reverse('recipes:home')
         view = resolve(url)
@@ -47,22 +46,12 @@ class RecipeViewsTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_recipe_home_template_loads_recipes(self):
-        category = Category.objects.create(name='Category')
-        author = User.objects.create_user(first_name='user',
-                                          last_name='user',
-                                          username='username',
-                                          password='123456',
-                                          email='username@email.com')
-        recipe = Recipe.objects.create(category=category,
-                                       author=author,
-                                       title='Recipe Title',
-                                       description='Description',
-                                       slug='recipe-slug',
-                                       preparation_time=10,
-                                       preparation_time_unit='Minutos',
-                                       servings=5,
-                                       servings_unit='Porções',
-                                       preparation_step='Recipe Preparations Steps',  # noqa: E501
-                                       preparation_step_is_html=False,
-                                       is_published=True)
-        assert 1 == 1
+        self.make_recipe()
+
+        url = reverse('recipes:home')
+        response = self.client.get(url)
+        content = response.content.decode('utf-8')
+        context_recipes = response.context['recipes']
+
+        self.assertIn('Recipe Title', content)
+        self.assertGreaterEqual(len(context_recipes), 1)
