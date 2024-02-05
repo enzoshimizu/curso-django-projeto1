@@ -11,7 +11,7 @@ def home(request):
 
 
 def recipe(request, id):
-    recipe = get_object_or_404(Recipe, id=id)
+    recipe = get_object_or_404(Recipe, id=id, is_published=True)
     context = {'recipe': recipe,
                'is_detail_page': True}
 
