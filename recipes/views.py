@@ -10,6 +10,13 @@ def home(request):
     return render(request, 'recipes/pages/home.html', context=context)
 
 
+def search(request):
+    recipes = Recipe.objects.filter(is_published=True).order_by('-id')
+    context = {'recipes': recipes}
+
+    return render(request, 'recipes/pages/home.html', context=context)
+
+
 def recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id, is_published=True)
     context = {'recipe': recipe,
