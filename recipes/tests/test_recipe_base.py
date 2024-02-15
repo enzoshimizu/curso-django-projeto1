@@ -33,13 +33,13 @@ class RecipeTestBase(TestCase):
                     is_published=True):
 
         if not category_data:
-            category = {}
+            category_data = {}
 
         if not author_data:
-            author = {}
+            author_data = {}
 
-        return Recipe.objects.create(category=self.make_category(**category),
-                                     author=self.make_author(**author),
+        return Recipe.objects.create(category=self.make_category(**category_data),  # noqa: E501
+                                     author=self.make_author(**author_data),
                                      title=title,
                                      description=description,
                                      slug=slug,
