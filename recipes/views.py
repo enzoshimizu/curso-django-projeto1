@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, get_list_or_404, get_object_or_404
@@ -12,10 +11,6 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 
 def home(request):
-    messages.success(request, 'Que legal, foi um sucesso!')
-    messages.info(request, 'Que legal, foi um sucesso!')
-    messages.warning(request, 'Que legal, foi um sucesso!')
-
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
 
     page_object, pagination_range = make_pagination(
