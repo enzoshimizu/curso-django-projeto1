@@ -33,12 +33,11 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
         add_placeholder(self.fields['last_name'], 'Ex.: Doe')
-        add_attr(self.fields['username'], 'css', 'a-css-class')
 
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={
-            'placeholder': 'Your password'
+            'placeholder': 'Type your password'
         }),
         error_messages={
             'required': 'Password must not be empty'
