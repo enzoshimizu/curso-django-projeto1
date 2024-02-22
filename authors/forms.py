@@ -72,7 +72,7 @@ class RegisterForm(forms.ModelForm):
             'password': 'Password',
         }
         help_texts = {
-            'username': 'Required. 150 characters or less.',
+            'email': 'The e-mail must be valid.',
         }
         error_messages = {
             'username': {
