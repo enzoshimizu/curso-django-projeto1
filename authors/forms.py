@@ -32,7 +32,6 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
-        add_placeholder(self.fields['first_name'], 'Ex.: John')
         add_placeholder(self.fields['last_name'], 'Ex.: Doe')
         add_attr(self.fields['username'], 'css', 'a-css-class')
 
@@ -84,7 +83,7 @@ class RegisterForm(forms.ModelForm):
         }
         widgets = {
             'first_name': forms.TextInput(attrs={
-                'placeholder': 'Type your first name here.'
+                'placeholder': 'Ex.: John'
             }),
         }
 
