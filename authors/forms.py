@@ -32,6 +32,7 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
+        add_placeholder(self.fields['first_name'], 'Ex.: John')
         add_placeholder(self.fields['last_name'], 'Ex.: Doe')
 
     username = forms.CharField(
@@ -81,7 +82,9 @@ class RegisterForm(forms.ModelForm):
     )
 
     password2 = forms.CharField(
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Repeat your password',
+        }),
         label='Password2',
         error_messages={
             'required': 'Please, repeat your password'
@@ -123,6 +126,6 @@ class RegisterForm(forms.ModelForm):
 
         if password != password2:
             raise ValidationError({
-                'password': 'Password and Password2 must be equal',
-                'password2': 'Password and Password2 must be equal',
+                'password': 'Password and password2 must be equal',
+                'password2': 'Password and password2 must be equal',
             })
