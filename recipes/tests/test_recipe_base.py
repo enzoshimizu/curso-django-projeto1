@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from recipes.models import Category, Recipe, User
 
 
@@ -50,6 +51,20 @@ class RecipeMixin:
                                      preparation_step=preparation_step,
                                      preparation_step_is_html=preparation_step_is_html,  # noqa: E501
                                      is_published=is_published)
+
+    def make_recipe_in_batch(self, qtd=10):
+        recipes = []
+
+        for i in range(qtd):
+            kwargs = {
+                'title': f'Recipe Title {i}',
+                'slug': f'{i}',
+                'author_data': {'username': f'u{i}'},
+            }
+            recipe = self.make_recipe(**kwargs)
+            recipes.append(recipe)
+
+        return recipes
 
 
 class RecipeTestBase(TestCase, RecipeMixin):
