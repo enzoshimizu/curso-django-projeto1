@@ -91,12 +91,6 @@ class RegisterForm(forms.ModelForm):
             },
         }
 
-        widgets = {
-            'first_name': forms.TextInput(attrs={
-                'placeholder': 'Ex.: John'
-            }),
-        }
-
     def clean_email(self):
         email = self.cleaned_data.get('email', '')
         exists = User.objects.filter(email=email).exists()
