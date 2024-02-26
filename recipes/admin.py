@@ -48,3 +48,7 @@ class RecipeAdmin(admin.ModelAdmin):
     ordering = (
         '-id',
     )
+
+    prepopulated_fields = {
+        'slug': ('title',)
+    }
