@@ -14,7 +14,7 @@ class AuthorRecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
 
-        fields = {
+        fields = [
             'title',
             'description',
             'preparation_time',
@@ -23,7 +23,7 @@ class AuthorRecipeForm(forms.ModelForm):
             'servings_unit',
             'preparation_step',
             'cover',
-        }
+        ]
 
         widgets = {
             'cover': forms.FileInput(
