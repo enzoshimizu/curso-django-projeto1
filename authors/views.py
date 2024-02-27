@@ -5,7 +5,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, AuthorRecipeForm
 from recipes.models import Recipe
 
 
@@ -109,14 +109,20 @@ def dashboard(request):
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def dashboard_recipe_edit(request, id):
-    recipe = Recipe.objects.filter(
+    recipe = Recipe.objects.get(
         is_published=False,
         author=request.user,
         pk=id,
     )
 
+    form = AuthorRecipeForm(
+        data=request.POST or None,
+        instance=recipe
+    )
+
     context = {
         'recipes': recipe,
+        'form': form,
     }
 
     return render(request, 'authors/pages/dashboard_recipe.html', context)
