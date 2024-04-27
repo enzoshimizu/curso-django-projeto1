@@ -5,7 +5,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .forms import RegisterForm, LoginForm, AuthorRecipeForm
+from authors.forms import RegisterForm, LoginForm
 from recipes.models import Recipe
 
 
@@ -105,72 +105,6 @@ def dashboard(request):
     }
 
     return render(request, 'authors/pages/dashboard.html', context)
-
-
-@login_required(login_url='authors:login', redirect_field_name='next')
-def dashboard_recipe_edit(request, id):
-    recipe = Recipe.objects.get(
-        is_published=False,
-        author=request.user,
-        pk=id,
-    )
-
-    form = AuthorRecipeForm(
-        data=request.POST or None,
-        files=request.FILES or None,
-        instance=recipe
-    )
-
-    if form.is_valid():
-        # Agora, o form é válido e eu posso tentar salvar
-        recipe = form.save(commit=False)
-
-        recipe.author = request.user
-        recipe.preparation_steps_is_html = False
-        recipe.is_published = False
-
-        recipe.save()
-
-        messages.success(request, 'Sua receita foi salva com sucesso!')
-        return redirect(reverse('authors:dashboard_recipe_edit', args=(id,)))
-
-    context = {
-        'recipes': recipe,
-        'form': form,
-    }
-
-    return render(request, 'authors/pages/dashboard_recipe.html', context)
-
-
-@login_required(login_url='authors:login', redirect_field_name='next')
-def dashboard_recipe_new(request):
-    form = AuthorRecipeForm(
-        data=request.POST or None,
-        files=request.FILES or None,
-    )
-
-    if form.is_valid():
-        recipe: Recipe = form.save(commit=False)
-
-        recipe.author = request.user
-        recipe.preparation_steps_is_html = False
-        recipe.is_published = False
-
-        recipe.save()
-
-        messages.success(request, 'Salvo com sucesso!')
-        return redirect(
-            reverse('authors:dashboard_recipe_edit', args=(recipe.id,))
-        )
-
-    return render(
-        request,
-        'authors/pages/dashboard_recipe.html',
-        context={
-            'form': form,
-            'form_action': reverse('authors:dashboard_recipe_new')
-        }
-    )
 
 
 @login_required(login_url='authors:login', redirect_field_name='next')
