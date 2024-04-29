@@ -28,6 +28,8 @@ class RecipeListViewBase(ListView):
         if not qs:
             raise Http404()
 
+        qs = qs.select_related('author', 'category')
+
         return qs
 
     def get_context_data(self, *args, **kwargs):
