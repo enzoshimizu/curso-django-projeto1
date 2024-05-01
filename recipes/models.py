@@ -42,7 +42,7 @@ class Recipe(models.Model):
                                null=True,
                                blank=True,
                                default=None)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True, default='')
 
     def __str__(self) -> str:
         return self.title
