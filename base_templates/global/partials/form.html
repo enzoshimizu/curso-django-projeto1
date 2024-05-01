@@ -1,6 +1,9 @@
 <div class="main-content container">
     <form 
       class="main-form"
+      {% if form_action %}
+        action={{ form_action }}
+      {% endif %}      
       method="POST"
       enctype="multipart/form-data"  
     >
