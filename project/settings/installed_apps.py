@@ -1,4 +1,5 @@
 INSTALLED_APPS = [
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -8,6 +9,7 @@ INSTALLED_APPS = [
 
     # Plugins
     'debug_toolbar',
+    'rest_framework',
 
     # Apps
     'recipes',
