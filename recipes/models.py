@@ -1,3 +1,7 @@
+import string
+
+from random import SystemRandom
+
 from collections import defaultdict
 
 from django.contrib.auth.models import User
@@ -71,7 +75,14 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = f'{slugify(self.title)}'
+            rand_letters = ''.join(
+                SystemRandom().choices(
+                    string.ascii_letters + string.digits,
+                    k=5,
+                )
+            )
+
+            self.slug = slugify(f'{self.title}-{rand_letters}')
 
         return super().save(*args, **kwargs)
 
