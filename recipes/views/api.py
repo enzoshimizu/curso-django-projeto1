@@ -10,13 +10,23 @@ from tag.models import Tag
 
 
 class RecipeAPIV2Pagination(PageNumberPagination):
-    page_size = 1
+    page_size = 3
 
 
 class RecipeAPIV2ViewSet(ModelViewSet):
     queryset = Recipe.objects.get_published()
     serializer_class = RecipeSerializer
     pagination_class = RecipeAPIV2Pagination
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+
+        category_id = self.request.query_params.get('category_id', '')
+
+        if category_id != '' and category_id.isnumeric():
+            qs = qs.filter(category_id=category_id)
+
+        return qs
 
 
 @api_view()
