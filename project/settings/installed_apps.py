@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     # Plugins
     'debug_toolbar',
     'rest_framework',
+    'rest_framework_simplejwt',
 
     # Apps
     'recipes',

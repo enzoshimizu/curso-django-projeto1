@@ -9,3 +9,4 @@ from project.settings.i18n import *
 from project.settings.assets import *
 from project.settings.messages import *
 from project.settings.debug_toolbar import *
+from project.settings.rest_framework import *
